@@ -29,6 +29,7 @@ while getopts o: opt; do
                 brightnessctl set +1%
             else
                 brightnessctl set +5%
+            swayosd-client --brightness raise
             fi
             ;;
         d) # Decrease brightness
@@ -38,6 +39,7 @@ while getopts o: opt; do
                 brightnessctl set 1%-
             else
                 brightnessctl set 5%-
+            swayosd-client --brightness lower
             fi
             ;;
         *)

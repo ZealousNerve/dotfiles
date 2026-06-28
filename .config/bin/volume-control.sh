@@ -1,28 +1,25 @@
 #!/bin/bash
 
-# Display usage help
 print_error() {
-    cat <<"EOF"
+    cat <<"HELP"
 Usage: ./volume-control.sh <action>
 Actions:
     i   -- increase volume [+5%]
     d   -- decrease volume [-5%]
     m   -- toggle mute
-EOF
+HELP
     exit 1
 }
 
-# Send notification for mute status
 notify_mute() {
     mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
     if [ "${mute}" = "yes" ]; then
-        notify-send "Volume" "Muted" -i audio-volume-muted-symbolic -t 1000 -r 91190
+        swayosd-client --output-volume mute
     else
-        notify-send "Volume" "Unmuted" -i audio-volume-muted-symbolic -t 1000 -r 91190
+        swayosd-client --output-volume unmute
     fi
 }
 
-# Handle volume changes
 action_volume() {
     current_vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -m1 'Volume:' | awk '{print $5}' | sed 's/%//')
 
@@ -32,17 +29,18 @@ action_volume() {
             new_vol=$((current_vol + 5))
             [ "$new_vol" -gt 100 ] && new_vol=100
             pactl set-sink-volume @DEFAULT_SINK@ "${new_vol}%"
+            swayosd-client --output-volume raise
         fi
         ;;
     d)
         new_vol=$((current_vol - 5))
         [ "$new_vol" -lt 0 ] && new_vol=0
         pactl set-sink-volume @DEFAULT_SINK@ "${new_vol}%"
+        swayosd-client --output-volume lower
         ;;
     esac
 }
 
-# Main execution
 case "${1}" in
 i) action_volume i ;;
 d) action_volume d ;;

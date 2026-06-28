@@ -25,6 +25,7 @@
   "modules-right": [
     "network", // network speed
     "tray",
+    "custom/recording",
     "privacy",
     "hyprland/language", // language indicator
     "pulseaudio",
@@ -284,6 +285,29 @@
     "interval": 5,
     "min-length": 6,
     "max-length": 6
+  },
+
+    "custom/recording": {
+    "exec": "echo {}",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {"default": "", "recording": "󰑋"},
+    "on-click": "~/.config/bin/record.sh",
+    "signal": 8,
+    "interval": "once",
+    "tooltip": false,
+    "max-length": 2,
+    "min-length": 2
+  },
+
+
+  
+    "on-click": "~/.config/bin/record.sh",
+    "signal": 8,
+    "interval": "once",
+    "tooltip": false,
+    "max-length": 2,
+    "min-length": 2
   },
 
   "custom/power": {

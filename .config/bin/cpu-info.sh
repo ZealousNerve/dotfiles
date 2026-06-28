@@ -8,7 +8,7 @@ frequency=$(echo "$freqlist" | tr ' ' '\n' | awk "{sum+=\$1} END {printf \"%.0f/
 # Get CPU temperature in Celsius
 temp=$(sensors | awk '/Package id 0/ {print $4}' | awk -F '[+.]' '{print $2}') # Package temperature
 if [[ -z "$temp" ]]; then
-    temp=$(sensors | awk '/Tctl/ {print $2}' | tr -d '+°C') # Fallback to Tctl if Package id 0 is empty
+    temp=$(sensors | awk '/Tctl/ {print $2}' | tr -d '+°C' | awk '{printf "%.0f", $1 - 27}') # Fallback to Tctl if Package id 0 is empty
 fi
 if [[ -z "$temp" ]]; then
     temp="N/A" # If no temp found, set to N/A
