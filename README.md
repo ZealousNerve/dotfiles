@@ -127,7 +127,31 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 ## Installation
 
-> **Warning:** Don't blindly copy these configs. Read them first. Some files are specific to my hardware (NVIDIA GPU, monitor layout). Adapt before applying.
+> **Warning:** This is designed for a **fresh Arch Linux + Hyprland base install**.
+> Running on an existing system may overwrite your configs. Backups are created automatically.
+
+### ⚡ One-liner (recommended)
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/ZealousNerve/dotfiles/main/install.sh)
+```
+
+This single command will:
+- Update your system
+- Install `yay` (AUR helper)
+- Clone and apply all dotfiles
+- Install every package from `pkglist.txt`
+- Set up oh-my-zsh, plugins, and Powerlevel10k
+- Generate initial colors via matugen
+- Apply GTK theme
+
+After it finishes, reboot and start Hyprland.
+
+---
+
+### Manual Installation
+
+If you prefer to do it step by step:
 
 ### 1. Clone
 
@@ -193,6 +217,7 @@ If your GPU or monitor setup differs, check:
 - All scripts in `~/.config/bin/` are POSIX-friendly and commented
 - The `.env.example` in `bin/` shows what variables the screenshot upload scripts need
 - `wireplumber` config tweaks ALSA for proper audio routing on this hardware
+- Full system map and dependency reference: [`SYSTEM.md`](./SYSTEM.md)
 
 ---
 
