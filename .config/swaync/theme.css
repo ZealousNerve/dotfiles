@@ -1,0 +1,21 @@
+:root {
+  --cc-bg: #201f25;
+  --noti-border-color: rgba(71, 70, 79, 1);
+  --noti-bg: 32,31,37;
+  --noti-bg-alpha: 0.95;
+  --noti-bg-darker: #1c1b20;
+  --noti-bg-hover: #2a292f;
+  --noti-bg-focus: rgba(53, 52, 58, 1);
+  --noti-close-bg: #2a292f;
+  --noti-close-bg-hover: #35343a;
+  --text-color: #e5e1e9;
+  --text-color-disabled: #c8c5d0;
+  --bg-selected: #c5c0ff;
+  --notification-icon-size: 64px;
+  --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
+  --notification-group-icon-size: 32px;
+  --mpris-album-art-overlay: rgba(0, 0, 0, 1);
+  --mpris-button-hover: rgba(197, 192, 255, 1);
+  --mpris-album-art-icon-size: 96px;
+  --widget-volume-row-icon-size: 24px;
+}
